@@ -10,6 +10,8 @@ export const createMintNftTransaction = async (
   achievement: number,
   duration: number,
   date: number,
+  startTime: number,
+  endTime: number,
   tags: string
 ) => {
   const tx = new Transaction()
@@ -25,6 +27,8 @@ export const createMintNftTransaction = async (
       tx.pure.u64(achievement),
       tx.pure.u64(duration),
       tx.pure.u64(date),
+      tx.pure.u64(startTime),
+      tx.pure.u64(endTime),
       tx.pure.string(tags)
     ]
   })

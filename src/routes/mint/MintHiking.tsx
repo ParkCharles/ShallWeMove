@@ -41,7 +41,8 @@ export const MintHiking = () => {
       setLoading(true)
       const watermarkInfo = {
         line1: formData.title || 'Hiking',
-        line2: `${formData.achievement}m • ${formData.totalDistance}m`
+        line2: `Max Elevation: ${formData.achievement} m`,
+        line3: `Distance: ${(formData.totalDistance / 1000).toFixed(2)} km`
       }
       
       const processedImageUrl = await processImage(file, watermarkInfo)
@@ -83,7 +84,6 @@ export const MintHiking = () => {
     try {
       setLoading(true)
       const tx = await createMintNftTransaction(
-        account.address,
         formData.title,
         formData.description,
         formData.imageUrl,
@@ -92,8 +92,8 @@ export const MintHiking = () => {
         formData.achievement,
         formData.duration,
         formData.date.unix(),
-        String(formData.startTime.unix()),
-        String(formData.endTime.unix()),
+        formData.startTime.unix(),
+        formData.endTime.unix(),
         formData.tags
       )
 

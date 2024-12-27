@@ -47,10 +47,12 @@ export const HikingFields = ({
         <TextField
           label="Number of Participants"
           type="number"
-          value={formData.participants}
-          onChange={(e) => onFormChange({ participants: parseInt(e.target.value) || 1 })}
+          value={formData.participants || ''}
+          onChange={(e) => onFormChange({ 
+            participants: e.target.value === '' ? 0 : parseInt(e.target.value)
+          })}
           fullWidth
-          inputProps={{ min: 1 }}
+          inputProps={{ min: 0 }}
         />
       </Grid>
 

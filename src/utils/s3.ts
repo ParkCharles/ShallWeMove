@@ -16,8 +16,7 @@ export const uploadToS3 = async (file: File) => {
       Bucket: import.meta.env.VITE_AWS_BUCKET_NAME,
       Key: key,
       Body: file,
-      ContentType: file.type,
-      ACL: 'public-read'
+      ContentType: file.type
     })
 
     await s3Client.send(command)
