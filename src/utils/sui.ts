@@ -1,8 +1,7 @@
-import { TransactionBlock } from '@mysten/sui.js/transactions'
-import { PACKAGE_ID } from '@/constants'
+import { Transaction } from "@mysten/sui/transactions";
+import { PACKAGE_ID } from "@/constants";
 
 export const createMintNftTransaction = async (
-  sender: string,
   title: string,
   description: string,
   imageUrl: string,
@@ -11,26 +10,22 @@ export const createMintNftTransaction = async (
   achievement: number,
   duration: number,
   date: number,
-  weather: string,
-  mood: string,
   tags: string
 ) => {
-  const tx = new TransactionBlock()
+  const tx = new Transaction()
   
   tx.moveCall({
     target: `${PACKAGE_ID}::movent::mint_nft`,
     arguments: [
-      tx.pure(title),
-      tx.pure(description),
-      tx.pure(imageUrl),
-      tx.pure(location),
-      tx.pure(participants),
-      tx.pure(achievement),
-      tx.pure(duration),
-      tx.pure(date),
-      tx.pure(weather),
-      tx.pure(mood),
-      tx.pure(tags)
+      tx.pure.string(title),
+      tx.pure.string(description),
+      tx.pure.string(imageUrl),
+      tx.pure.string(location),
+      tx.pure.u64(participants),
+      tx.pure.u64(achievement),
+      tx.pure.u64(duration),
+      tx.pure.u64(date),
+      tx.pure.string(tags)
     ]
   })
 

@@ -1,9 +1,25 @@
-# env files
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Production
+build
+dist
+dist-ssr
+
+# Environment Variables
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+
+# TypeScript
+*.tsbuildinfo
 
 # Logs
 logs
@@ -13,11 +29,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
 
 # Editor directories and files
 .vscode/*
@@ -29,3 +40,29 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Temporary files
+.temp
+.tmp
+.cache
+
+# Vite
+.vite
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
