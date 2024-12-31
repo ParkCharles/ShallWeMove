@@ -240,11 +240,12 @@ export const HikingForm = ({
           <Button
             type="submit"
             variant="contained"
-            onClick={onSubmit}
-            disabled={loading || !formData.location || !formData.imageUrl}
+            color="primary"
             fullWidth
+            disabled={loading || !formData.location || !formData.imageUrl}
+            onClick={onSubmit}
           >
-            {loading ? <CircularProgress size={24} /> : 'Record hiking journey on the blockchain'}
+            {loading ? <CircularProgress size={24} /> : 'Record Hiking Journey on the Blockchain'}
           </Button>
         </Grid>
       </Grid>
