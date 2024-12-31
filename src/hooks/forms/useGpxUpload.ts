@@ -10,11 +10,13 @@ interface UseGpxUploadReturn {
 
 export const useGpxUpload = (
   onSuccess: (data: {
-    achievement: number
-    startTime: dayjs.Dayjs
-    endTime: dayjs.Dayjs
+    maxElevation: number
+    date: dayjs.Dayjs
+    startTime: string
+    endTime: string
     duration: number
     totalDistance: number
+    gpxFile: File
   }) => void
 ): UseGpxUploadReturn => {
   const [loading, setLoading] = useState(false)
@@ -29,11 +31,13 @@ export const useGpxUpload = (
       const gpxData = await parseGpxData(content)
       
       onSuccess({
-        achievement: gpxData.maxElevation,
-        startTime: dayjs(gpxData.startTime),
-        endTime: dayjs(gpxData.endTime),
+        maxElevation: gpxData.maxElevation,
+        date: dayjs(gpxData.startTime),
+        startTime: dayjs(gpxData.startTime).format('HH:mm'),
+        endTime: dayjs(gpxData.endTime).format('HH:mm'),
         duration: dayjs(gpxData.endTime).diff(dayjs(gpxData.startTime), 'minute'),
-        totalDistance: gpxData.totalDistance
+        totalDistance: gpxData.totalDistance,
+        gpxFile: file
       })
     } catch (error) {
       setError('Failed to parse GPX file')

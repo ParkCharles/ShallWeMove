@@ -1,26 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './routes'
-import { SuiClientProvider, WalletProvider } from '@mysten/dapp-kit'
-import { getFullnodeUrl } from '@mysten/sui/client'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { SuiProvider } from '@/providers/SuiProvider'
+import { router } from '@/routes'
+import { ThemeProvider } from '@mui/material/styles'
+import { theme } from '@/theme'
 import '@mysten/dapp-kit/dist/index.css'
 
-const networkConfig = {
-  testnet: { url: getFullnodeUrl('testnet') }
-}
-
-const queryClient = new QueryClient()
+document.title = 'Shall We Move'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <SuiClientProvider networks={networkConfig} defaultNetwork="testnet">
-        <WalletProvider autoConnect>
-          <RouterProvider router={router} />
-        </WalletProvider>
-      </SuiClientProvider>
-    </QueryClientProvider>
+    <ThemeProvider theme={theme}>
+      <SuiProvider>
+        <RouterProvider router={router} />
+      </SuiProvider>
+    </ThemeProvider>
   </React.StrictMode>
 )

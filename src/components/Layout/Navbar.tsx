@@ -1,52 +1,59 @@
-import { AppBar, Toolbar, Button, Box, Typography } from '@mui/material'
+import { AppBar, Toolbar, Stack } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import { ConnectWallet } from '../ConnectWallet'
-import { navigationButtons } from '@/routes'
+import { styled } from '@mui/material/styles'
+import { WalletButton } from '@/providers/SuiProvider'
+
+// 공통 버튼 스타일
+const commonButtonStyles = `
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  text-transform: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+`
+
+// 로고 스타일
+const Logo = styled(RouterLink)`
+  ${commonButtonStyles}
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: inherit;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+`
+
+// 네비게이션 버튼 스타일
+const NavButton = styled(RouterLink)`
+  ${commonButtonStyles}
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+`
 
 export const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
-          <Button 
-            component={RouterLink} 
-            to="/"
-            variant="outlined"
-            sx={{
-              color: 'white',
-              borderColor: 'white',
-              '&:hover': {
-                borderColor: 'rgba(255, 255, 255, 0.8)',
-                backgroundColor: 'rgba(255, 255, 255, 0.08)'
-              },
-              px: 1,
-              py: 0.2,
-              fontSize: '0.875rem',
-              fontWeight: 'bold',
-              minHeight: '28px',
-              lineHeight: 1
-            }}
-          >
-            ShallWeMove
-          </Button>
-        </Box>
-        
-        {navigationButtons.map((button) => (
-          <Button
-            key={button.path}
-            color="inherit"
-            component={RouterLink}
-            to={button.path}
-            startIcon={button.icon}
-            sx={{ mr: 1 }}
-          >
-            {button.label}
-          </Button>
-        ))}
+    <AppBar position="sticky" color="default" elevation={1}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Logo to="/">
+          ShallWeMove
+        </Logo>
 
-        <Box sx={{ ml: 2 }}>
-          <ConnectWallet />
-        </Box>
+        <Stack direction="row" spacing={2} alignItems="center">
+          <NavButton to="/hiking">
+            Record Hiking
+          </NavButton>
+          <WalletButton />
+        </Stack>
       </Toolbar>
     </AppBar>
   )

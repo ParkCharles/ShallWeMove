@@ -1,32 +1,71 @@
-import { Box, Grid, Card, CardContent, Typography, CardActionArea, Container, Button } from '@mui/material'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { DirectionsWalk as DirectionsWalkIcon, Pool as PoolIcon, Security as SecurityIcon, AccountBalanceWallet as WalletIcon, Apps as AppsIcon } from '@mui/icons-material'
+import { Box, Grid, Card, Typography, Container, Button, Stack } from '@mui/material'
+import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export const Home = () => {
-  const navigate = useNavigate()
   const location = useLocation()
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location])
 
-  const categories = [
+  const hikingFeatures = [
     {
-      title: 'Hiking',
-      description: 'Record your hiking adventures with elevation gains and trail details.',
-      image: '/hiking.jpg',
-      path: '/mint/hiking',
-      icon: <DirectionsWalkIcon sx={{ fontSize: 40 }} />
+      icon: "🗻",
+      title: "Mountain & Trail",
+      description: "Record the mountains you climbed and trails you explored"
     },
     {
-      title: 'Swimming',
-      description: 'Track your swimming sessions with distance and lap counts.',
-      image: '/swimming.jpg',
-      path: '/mint/swimming',
-      icon: <PoolIcon sx={{ fontSize: 40 }} />
+      icon: "⛰️",
+      title: "Peak Elevation",
+      description: "Track the highest point you reached on your journey"
+    },
+    {
+      icon: "⏱️",
+      title: "Time & Duration",
+      description: "Save when you started, finished, and how long you hiked"
+    },
+    {
+      icon: "👥",
+      title: "Shared Memory",
+      description: "Record everyone who joined and share the blockchain memory together"
+    },
+    {
+      icon: "📸",
+      title: "Summit Photo",
+      description: "Capture your achievement with a beautiful photo"
+    },
+    {
+      icon: "🌟",
+      title: "Forever Memory",
+      description: "Store your hiking memories permanently on blockchain"
     }
   ]
+
+  const walletGuideSteps = [
+    {
+      icon: "💧",
+      title: "Install Sui Wallet",
+      description: "Get the official Sui Wallet extension from Chrome Web Store",
+      buttonText: "Install Wallet",
+      buttonLink: "https://chrome.google.com/webstore/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil"
+    },
+    {
+      icon: "🔑",
+      title: "Create or Import Wallet",
+      description: "Set up a new wallet with a secure password or import your existing wallet"
+    },
+    {
+      icon: "🌐",
+      title: "Connect to Testnet",
+      description: "Click the ⚙️ (settings) icon in your Sui Wallet and select 'Sui Testnet' as your network"
+    },
+    {
+      icon: "🪙",
+      title: "Request Testnet SUI Tokens",
+      description: "In the same settings menu, scroll down to find 'Request Testnet SUI Tokens'. These tokens are required for storing your hiking records on the blockchain."
+    }
+  ]  
 
   return (
     <Box>
@@ -89,147 +128,150 @@ export const Home = () => {
         </Container>
       </Box>
 
-      {/* Wallet Guide Section */}
+      {/* Features Section */}
       <Container sx={{ mb: 8 }}>
-        <Typography variant="h3" align="center" gutterBottom sx={{ fontSize: '2.5rem' }}>
-          Get Started with Sui Wallet
-        </Typography>
-        <Box sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}>
-          <Typography variant="body1" align="center" sx={{ mb: 4, fontSize: '1.2rem' }}>
-            To store your records on the blockchain, you need to connect your Sui Wallet first.
-          </Typography>
-          <Typography variant="body1" align="center">
-            Follow these simple steps:
-          </Typography>
-        </Box>
+        <Stack spacing={6}>
+          <Stack spacing={4}>
+            <Typography variant="h3" align="center">
+              Record Your Hiking Journey
+            </Typography>
+            <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 2 }}>
+              Capture every detail of your mountain adventures and store them permanently on the blockchain
+            </Typography>
+          </Stack>
 
-        <Grid container spacing={4} sx={{ mb: 6 }}>
-          <Grid item xs={12} md={4}>
-            <Box sx={{ 
-              textAlign: 'center', 
-              p: 3,
-              height: '100%',
-              border: '1px solid',
-              borderColor: 'grey.200',
-              borderRadius: 2,
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'translateY(-8px)'
-              }
-            }}>
-              <WalletIcon sx={{ fontSize: 56, color: '#FE6B8B', mb: 2 }} />
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem' }}>
-                1. Install Sui Wallet
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem', mb: 3 }}>
-                Download and install the Sui Wallet browser extension from the Chrome Web Store. It's free and only takes a minute.
-              </Typography>
-              <Button
-                variant="contained"
-                href="https://chrome.google.com/webstore/detail/sui-wallet/opcgpfmipidbgpenhmajoajpbobppdil"
-                target="_blank"
-                sx={{ 
-                  bgcolor: '#FE6B8B',
-                  '&:hover': {
-                    bgcolor: '#FE6B8B',
-                    opacity: 0.9
-                  }
-                }}
-              >
-                Install Now
-              </Button>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Box sx={{ 
-              textAlign: 'center', 
-              p: 3,
-              height: '100%',
-              border: '1px solid',
-              borderColor: 'grey.200',
-              borderRadius: 2,
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'translateY(-8px)'
-              }
-            }}>
-              <SecurityIcon sx={{ fontSize: 56, color: '#FE6B8B', mb: 2 }} />
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem' }}>
-                2. Create Account
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem' }}>
-                Set up your wallet using social login or create a new account with a secure password. Make sure to safely store your recovery phrase.
-              </Typography>
-            </Box>
-          </Grid>
-
-          <Grid item xs={12} md={4}>
-            <Box sx={{ 
-              textAlign: 'center', 
-              p: 3,
-              height: '100%',
-              border: '1px solid',
-              borderColor: 'grey.200',
-              borderRadius: 2,
-              transition: 'transform 0.2s',
-              '&:hover': {
-                transform: 'translateY(-8px)'
-              }
-            }}>
-              <AppsIcon sx={{ fontSize: 56, color: '#FE6B8B', mb: 2 }} />
-              <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem' }}>
-                3. Connect & Start
-              </Typography>
-              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem' }}>
-                Once installed, click the "Connect Wallet" button at the top of the page. Then you're ready to store your activities on the blockchain!
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Categories Section */}
-      <Container sx={{ mb: 8 }}>
-        <Typography variant="h4" align="center" gutterBottom>
-          Choose Your Activity
-        </Typography>
-        <Typography variant="body1" align="center" sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}>
-          Record your activities on the blockchain and earn rewards for your achievements!
-        </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          {categories.map((category) => (
-            <Grid item xs={12} sm={6} md={4} key={category.title}>
-              <Card 
-                sx={{ 
-                  height: '100%',
-                  transition: 'transform 0.2s',
-                  '&:hover': {
-                    transform: 'scale(1.02)'
-                  }
-                }}
-              >
-                <CardActionArea 
-                  onClick={() => navigate(category.path)}
-                  sx={{ height: '100%', p: 3 }}
+          <Grid container spacing={6}>
+            {hikingFeatures.map((feature) => (
+              <Grid item xs={12} sm={6} md={4} key={feature.title} sx={{ mb: 4 }}>
+                <Card 
+                  sx={{ 
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    p: 4,
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-8px)'
+                    }
+                  }}
                 >
-                  <CardContent sx={{ textAlign: 'center' }}>
-                    <Box sx={{ color: '#FE6B8B', mb: 2 }}>
-                      {category.icon}
-                    </Box>
-                    <Typography variant="h5" gutterBottom sx={{ fontSize: '1.5rem' }}>
-                      {category.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ fontSize: '1rem' }}>
-                      {category.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                  <Typography variant="h2" sx={{ mb: 2 }}>
+                    {feature.icon}
+                  </Typography>
+                  <Typography variant="h6" gutterBottom align="center">
+                    {feature.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" align="center">
+                    {feature.description}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Stack>
       </Container>
+
+      {/* Wallet Guide Section */}
+      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+        <Container>
+          <Typography variant="h4" align="center" gutterBottom>
+            Start Your Journey
+          </Typography>
+          <Typography variant="body1" align="center" sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}>
+            Follow these steps to connect your Sui Wallet and begin recording your hiking memories
+          </Typography>
+          <Grid container spacing={4}>
+            {walletGuideSteps.map((step, index) => (
+              <Grid item xs={12} sm={6} md={3} key={step.title}>
+                <Card 
+                  sx={{ 
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    p: 3,
+                    position: 'relative',
+                    transition: 'transform 0.2s',
+                    '&:hover': {
+                      transform: 'translateY(-8px)'
+                    }
+                  }}
+                >
+                  <Box 
+                    sx={{ 
+                      position: 'absolute',
+                      top: 16,
+                      left: 16,
+                      width: 24,
+                      height: 24,
+                      borderRadius: '50%',
+                      bgcolor: 'primary.main',
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.875rem',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    {index + 1}
+                  </Box>
+                  <Typography variant="h2" align="center" sx={{ mb: 2, fontSize: '2.5rem' }}>
+                    {step.icon}
+                  </Typography>
+                  <Typography variant="h6" align="center" gutterBottom>
+                    {step.title}
+                  </Typography>
+                  <Typography 
+                    variant="body2" 
+                    color="text.secondary" 
+                    align="center" 
+                    sx={{ mb: 2 }}
+                  >
+                    {step.description}
+                  </Typography>
+                  {step.buttonText && (
+                    <Button
+                      variant="contained"
+                      href={step.buttonLink}
+                      target="_blank"
+                      sx={{ 
+                        mt: 2,
+                        bgcolor: 'primary.main',
+                        '&:hover': {
+                          bgcolor: 'primary.dark'
+                        }
+                      }}
+                    >
+                      {step.buttonText}
+                    </Button>
+                  )}
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Testnet Info Section */}
+      <Box sx={{ bgcolor: 'grey.100', py: 4 }}>
+        <Container>
+          <Typography 
+            variant="body1" 
+            align="center" 
+            color="text.secondary"
+            sx={{ 
+              maxWidth: 600, 
+              mx: 'auto',
+              fontSize: '0.875rem',
+              lineHeight: 1.8
+            }}
+          >
+            Currently in testnet phase - all features are free to try, but please note that recorded data may be deleted. 
+            Full data permanence will be guaranteed once we launch on mainnet.
+          </Typography>
+        </Container>
+      </Box>
     </Box>
   )
 } 
