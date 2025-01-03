@@ -22,9 +22,9 @@ export const Hiking = () => {
     participants: 0,
     maxElevation: 0,
     duration: 0,
-    date: dayjs(),
-    startTime: '00:00',
-    endTime: '00:00',
+    date: dayjs(''),
+    startTime: '',
+    endTime: '',
     processedImageUrl: '',
     totalDistance: 0,
     gpxFile: null
@@ -68,6 +68,7 @@ export const Hiking = () => {
     setFormData(prev => ({
       ...prev,
       maxElevation: data.maxElevation,
+      date: data.date,
       startTime: data.startTime,
       endTime: data.endTime,
       duration: data.duration,

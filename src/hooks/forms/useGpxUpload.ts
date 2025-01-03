@@ -30,12 +30,14 @@ export const useGpxUpload = (
       const content = await file.text()
       const gpxData = await parseGpxData(content)
       
+      const hikingDate = dayjs(gpxData.startTime)
+      
       onSuccess({
         maxElevation: gpxData.maxElevation,
-        date: dayjs(gpxData.startTime),
-        startTime: dayjs(gpxData.startTime).format('HH:mm'),
+        date: hikingDate,
+        startTime: hikingDate.format('HH:mm'),
         endTime: dayjs(gpxData.endTime).format('HH:mm'),
-        duration: dayjs(gpxData.endTime).diff(dayjs(gpxData.startTime), 'minute'),
+        duration: dayjs(gpxData.endTime).diff(hikingDate, 'minute'),
         totalDistance: gpxData.totalDistance,
         gpxFile: file
       })

@@ -20,6 +20,17 @@ const ViewButton = styled(Button)(({ theme }) => ({
   fontWeight: 600
 }))
 
+const ResultContainer = styled(Box)`
+  max-width: var(--max-width-content);
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  
+  @media (max-width: 600px) {
+    padding: var(--padding-mobile);
+  }
+`;
+
 interface HikingResultProps {
   objectId: string | null
   imageUrl: string
@@ -30,37 +41,39 @@ export const HikingResult = ({ objectId, imageUrl, location }: HikingResultProps
   if (!objectId) return null
 
   return (
-    <ResultCard>
-      <CardMedia
-        component="img"
-        height="200"
-        image={imageUrl}
-        alt={location}
-      />
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
-          🎉 Successfully recorded your hiking journey!
-        </Typography>
-        <Typography variant="body1" color="text.secondary" gutterBottom>
-          Your hiking memory at {location} has been permanently stored on the blockchain.
-        </Typography>
-        <Box sx={{ textAlign: 'center' }}>
-          <Link
-            href={`https://suiscan.xyz/testnet/object/${objectId}/fields`}
-            target="_blank"
-            rel="noopener noreferrer"
-            underline="none"
-          >
-            <ViewButton
-              variant="contained"
-              color="primary"
-              endIcon={<OpenInNewIcon />}
+    <ResultContainer>
+      <ResultCard>
+        <CardMedia
+          component="img"
+          height="200"
+          image={imageUrl}
+          alt={location}
+        />
+        <CardContent>
+          <Typography variant="h6" gutterBottom>
+            🎉 Successfully recorded your hiking journey!
+          </Typography>
+          <Typography variant="body1" color="text.secondary" gutterBottom>
+            Your hiking memory at {location} has been permanently stored on the blockchain.
+          </Typography>
+          <Box sx={{ textAlign: 'center' }}>
+            <Link
+              href={`https://suiscan.xyz/testnet/object/${objectId}/fields`}
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="none"
             >
-              View on Sui Scan
-            </ViewButton>
-          </Link>
-        </Box>
-      </CardContent>
-    </ResultCard>
+              <ViewButton
+                variant="contained"
+                color="primary"
+                endIcon={<OpenInNewIcon />}
+              >
+                View on Sui Scan
+              </ViewButton>
+            </Link>
+          </Box>
+        </CardContent>
+      </ResultCard>
+    </ResultContainer>
   )
 } 

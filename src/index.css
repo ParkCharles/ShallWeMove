@@ -6,10 +6,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --font-size-base: clamp(1rem, 1vw + 0.75rem, 1.125rem);
+  --max-width-content: 800px;
+  --padding-mobile: 1rem;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: var(--font-size-base);
+  line-height: 1.5;
 }
 
 a {
@@ -19,4 +27,20 @@ a {
 
 .wallet-button:hover {
   background-color: #FF4081 !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

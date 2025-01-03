@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { MainLayout } from '@/components/Layout/MainLayout'
+import { Layout } from '@/components/Layout'
 import { Home } from '@/pages/Home'
 import { Hiking } from '@/pages/Hiking'
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk'
@@ -12,7 +12,7 @@ export const navigationButtons = [
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: <Layout />,
     children: [
       {
         index: true,

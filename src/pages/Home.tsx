@@ -1,6 +1,25 @@
-import { Box, Grid, Card, Typography, Container, Button, Stack } from '@mui/material'
+import { Box, Grid, Card, Typography, Container, Button, Stack, styled, Paper } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+
+const FeatureGrid = styled(Grid)`
+  margin-top: 2rem;
+  
+  .feature-item {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s;
+    margin-bottom: 2rem;
+    
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+`;
 
 export const Home = () => {
   const location = useLocation()
@@ -72,42 +91,52 @@ export const Home = () => {
       {/* Hero Section */}
       <Box 
         sx={{ 
-          minHeight: '60vh',
+          minHeight: '80vh',
           display: 'flex',
           alignItems: 'center',
-          background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+          background: 'linear-gradient(135deg, #FF8E53 0%, #FE6B8B 100%)',
           color: 'white',
           textAlign: 'center',
-          mb: 8
+          mb: 8,
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'url("/pattern.svg")',
+            opacity: 0.1,
+            zIndex: 1
+          }
         }}
       >
-        <Container>
+        <Container sx={{ position: 'relative', zIndex: 2 }}>
           <Typography 
             variant="h1" 
             gutterBottom
             sx={{
-              fontSize: '4rem',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+              fontSize: { xs: '3rem', md: '4.5rem' },
+              textShadow: '2px 4px 8px rgba(0, 0, 0, 0.2)',
               letterSpacing: '0.05em',
-              fontWeight: 'bold',
-              transform: 'translateZ(0)',
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                transition: 'transform 0.3s ease'
-              }
+              fontWeight: 800,
+              marginBottom: 4,
+              animation: 'fadeInUp 1s ease-out'
             }}
           >
             ShallWeMove
           </Typography>
           <Typography 
             variant="h4" 
-            gutterBottom
             sx={{
-              fontSize: '2rem',
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
+              fontSize: { xs: '1.5rem', md: '2rem' },
+              fontWeight: 300,
               letterSpacing: '0.1em',
-              fontWeight: 500,
-              opacity: 0.95
+              opacity: 0.9,
+              marginBottom: 3,
+              animation: 'fadeInUp 1s ease-out 0.2s'
             }}
           >
             Move + Share + Connect
@@ -115,12 +144,12 @@ export const Home = () => {
           <Typography 
             variant="h5" 
             sx={{ 
-              mb: 4,
-              fontSize: '1.5rem',
-              textShadow: '1px 1px 2px rgba(0, 0, 0, 0.15)',
-              letterSpacing: '0.02em',
-              opacity: 0.9,
-              fontWeight: 400
+              fontSize: { xs: '1.2rem', md: '1.5rem' },
+              fontWeight: 400,
+              opacity: 0.8,
+              maxWidth: '600px',
+              margin: '0 auto',
+              animation: 'fadeInUp 1s ease-out 0.4s'
             }}
           >
             Store your activities on the blockchain
@@ -129,28 +158,39 @@ export const Home = () => {
       </Box>
 
       {/* Features Section */}
-      <Container sx={{ mb: 8 }}>
-        <Stack spacing={6}>
-          <Stack spacing={4}>
-            <Typography variant="h3" align="center">
-              Record Your Hiking Journey
-            </Typography>
-            <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 2 }}>
-              Capture every detail of your mountain adventures and store them permanently on the blockchain
-            </Typography>
-          </Stack>
-
-          <Grid container spacing={6}>
-            {hikingFeatures.map((feature) => (
-              <Grid item xs={12} sm={6} md={4} key={feature.title} sx={{ mb: 4 }}>
+      <Box sx={{ 
+        bgcolor: '#fff5f7',
+        py: 8, 
+        mb: 8 
+      }}>
+        <Container>
+          <Typography variant="h4" align="center" gutterBottom>
+            Record Your Hiking Journey
+          </Typography>
+          <Typography 
+            variant="body1" 
+            align="center" 
+            sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}
+          >
+            Capture every detail of your mountain adventures and store them permanently on the blockchain
+          </Typography>
+          <Grid 
+            container 
+            spacing={8} 
+            justifyContent="center"
+          >
+            {hikingFeatures.map((feature, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card 
                   sx={{ 
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    p: 4,
+                    p: 3,
+                    textAlign: 'center',
                     transition: 'transform 0.2s',
+                    marginBottom: { xs: '2rem', md: 0 },
                     '&:hover': {
                       transform: 'translateY(-8px)'
                     }
@@ -169,11 +209,14 @@ export const Home = () => {
               </Grid>
             ))}
           </Grid>
-        </Stack>
-      </Container>
+        </Container>
+      </Box>
 
       {/* Wallet Guide Section */}
-      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+      <Box sx={{ 
+        bgcolor: '#fdf2f8',
+        py: 8 
+      }}>
         <Container>
           <Typography variant="h4" align="center" gutterBottom>
             Start Your Journey
@@ -181,7 +224,7 @@ export const Home = () => {
           <Typography variant="body1" align="center" sx={{ mb: 6, maxWidth: 600, mx: 'auto' }}>
             Follow these steps to connect your Sui Wallet and begin recording your hiking memories
           </Typography>
-          <Grid container spacing={4}>
+          <Grid container spacing={8}>
             {walletGuideSteps.map((step, index) => (
               <Grid item xs={12} sm={6} md={3} key={step.title}>
                 <Card 
@@ -192,6 +235,7 @@ export const Home = () => {
                     p: 3,
                     position: 'relative',
                     transition: 'transform 0.2s',
+                    marginBottom: { xs: '2rem', md: 0 },
                     '&:hover': {
                       transform: 'translateY(-8px)'
                     }
