@@ -1,25 +1,6 @@
-import { Box, Grid, Card, Typography, Container, Button, Stack, styled, Paper } from '@mui/material'
+import { Box, Grid, Card, Typography, Container, Button } from '@mui/material'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-
-const FeatureGrid = styled(Grid)`
-  margin-top: 2rem;
-  
-  .feature-item {
-    padding: 2rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transition: transform 0.2s;
-    margin-bottom: 2rem;
-    
-    &:hover {
-      transform: translateY(-8px);
-    }
-  }
-`;
 
 export const Home = () => {
   const location = useLocation()
